@@ -261,7 +261,7 @@ function google_cse_sitesearch_options() {
         $site = preg_split('/[\s]+/', trim($site), 2, PREG_SPLIT_NO_EMPTY);
         // Select options will be HTML-escaped.
         // Radio options will be XSS-filtered.
-        $options[$site[0]] = isset($site[1]) ? $site[1] : t('Search %sitesearch', array('%sitesearch' => $site[0]));
+        $options[$site[0]] = isset($site[1]) ? $site[1] : t('Search "@sitesearch"', array('@sitesearch' => $site[0]));
       }
     }
   }

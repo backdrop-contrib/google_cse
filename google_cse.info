@@ -6,6 +6,7 @@ files[] = google_cse.install
 files[] = google_cse.module
 files[] = google_cse.admin.inc
 files[] = google_cse.theme.inc
+files[] = tests/google_cse.test
 scripts[] = google_cse.js
 stylesheets[all][] = google_cse.css
 
