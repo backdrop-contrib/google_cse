@@ -38,13 +38,9 @@ function google_cse_get_cse_tag() {
  * The search results page can be themed/customized.
  */
 function template_preprocess_google_cse_results(&$variables) {
-  $query = google_cse_build_query(isset($_GET['query']) ? $_GET['query'] : '', NULL, FALSE);
   $variables['results_searchbox_form'] = $variables['form'] ? drupal_get_form('google_cse_results_searchbox_form') : '';
   $variables['cse_tag'] = google_cse_get_cse_tag();
-  $variables['noscript'] = t('!google, or enable JavaScript to view them here.', array(
-    '!google' => l(t('View the results at Google'), 'http://' . variable_get('google_cse_domain', 'www.google.com') . '/cse', array(
-      'query' => $query,
-    ))));
+  $variables['noscript'] = t('You must enable JavaScript to view the search results.');
   $variables['prefix'] = filter_xss_admin(variable_get('google_cse_results_prefix', ''));
   $variables['suffix'] = filter_xss_admin(variable_get('google_cse_results_suffix', ''));
 

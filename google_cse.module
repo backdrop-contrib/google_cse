@@ -51,11 +51,14 @@ function google_cse_search_execute($keys = NULL, $conditions = NULL) {
  */
 function google_cse_build_query($keys, $sitesearch = NULL, $here = TRUE) {
   if (!variable_get('google_cse_use_adv', 0)) {
-    return array('query' => $keys);
+    return array(
+      'q' => $keys,
+      'cx' => variable_get('google_cse_cx', ''),
+    );
   }
 
   return array(
-    'query' => $keys,
+    'q' => $keys,
     'cx' => variable_get('google_cse_cx', ''),
     'cof' => $here ? variable_get('google_cse_cof_here', 'FORID:11') : variable_get('google_cse_cof_google', 'FORID:0'),
     'sitesearch' => isset($sitesearch) ? $sitesearch : google_cse_sitesearch_default(),
