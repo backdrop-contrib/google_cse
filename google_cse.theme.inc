@@ -71,7 +71,7 @@ function google_cse_results_searchbox_form($form, &$form_state) {
     $cof = variable_get('google_cse_cof_here', 'FORID:11');
   }
   else {
-    $form['#action'] = 'http://' . variable_get('google_cse_domain', 'www.google.com') . '/cse';
+    $form['#action'] = '//' . variable_get('google_cse_domain', 'www.google.com') . '/cse';
     $cof = variable_get('google_cse_cof_google', 'FORID:0');
   }
   $form['#method'] = 'get';
