@@ -7,26 +7,27 @@
 
 function google_cse_get_cse_tag() {
   $display = variable_get('google_cse_custom_results_display', 'results-only');
+  $attributes = filter_xss(variable_get('google_cse_tag_attributes', 'gname="google_cse"'));
 
   switch ($display) {
     case 'overlay':
     case 'compact':
     case 'full-width':
-      return '<gcse:search gname="google_cse"></gcse:search>';
+      return '<gcse:search ' . $attributes . '></gcse:search>';
 
     case 'two-page':
-      return '<gcse:searchbox-only gname="google_cse"></gcse:searchbox-only><gcse:searchresults-only gname="google_cse"></gcse:searchresults-only>';
+      return '<gcse:searchbox-only ' . $attributes . '></gcse:searchbox-only><gcse:searchresults-only ' . $attributes . '></gcse:searchresults-only>';
 
 
     case 'two-column':
-      return '<gcse:searchbox gname="google_cse"></gcse:searchbox><gcse:searchresults gname="google_cse"></gcse:searchresults>';
+      return '<gcse:searchbox ' . $attributes . '></gcse:searchbox><gcse:searchresults ' . $attributes . '></gcse:searchresults>';
 
 
     case 'results-only':
-      return '<gcse:searchresults-only gname="google_cse"></gcse:searchresults-only>';
+      return '<gcse:searchresults-only ' . $attributes . '></gcse:searchresults-only>';
 
     case 'google-hosted':
-      return '<gcse:searchbox-only gname="google_cse"></gcse:searchbox-only>';
+      return '<gcse:searchbox-only ' . $attributes . '></gcse:searchbox-only>';
 
     default:
       watchdog('google_cse', 'Invalid custom result display %display',
