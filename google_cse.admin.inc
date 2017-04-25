@@ -110,6 +110,13 @@ function google_cse_admin_settings() {
     '#default_value' => variable_get('google_cse_results_display_images', TRUE),
   );
 
+  $form['google_cse']['google_cse_show_watermark'] = array(
+    '#title' => t('Show watermark in search field'),
+    '#type' => 'checkbox',
+    '#description' => t('If set, search result snippets will contain a thumbnail image'),
+    '#default_value' => variable_get('google_cse_results_display_images', TRUE),
+  );
+
   $form['google_cse']['sitesearch'] = array(
     '#title' => t('SiteSearch settings'),
     '#type' => 'fieldset',

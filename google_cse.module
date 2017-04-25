@@ -254,6 +254,7 @@ function google_cse_init() {
       'language' => google_cse_language(),
       'resultsWidth' => intval(variable_get('google_cse_results_width', 600)),
       'domain' => variable_get('google_cse_domain', 'www.google.com'),
+      'showWaterMark' => variable_get('google_cse_show_watermark', TRUE),
     ),
   ), 'setting');
 }
