@@ -6,6 +6,27 @@
  */
 
 /**
+ * Implements hook_help().
+ */
+function google_cse_help($path, $arg) {
+
+  switch ($path) {
+    case 'admin/help#google_cse':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Google Custom Search Engine (CSE) is an embedded search engine that can be used to search any set of one or more sites.  No Google API key is required.  Read more at <a href="http://www.google.com/cse/" target="blank">http://www.google.com/cse/</a>.') . '</p>';
+      $output .= '<h3>' . t('Usage') . '</h3>';
+      $output .= '<p>' . t("After installing this module, activate Google CSE at <a href=\"/admin/config/search/settings\" target=\"blank\">admin/config/search/settings</a>, optionally setting it as the default search module, and configure it by entering Google's unique ID for your CSE.  Once you have granted permission for one or more roles to search the Google CSE, the search page can be found at search/google, and a separate self-contained search block can also be enabled.") . '</p>';
+      $output .= '<h3>' . t('Blocks') . '</h3>';
+      $output .= '<p>' . t('The include Google CSE block can optionally be enabled at <a href="/admin/structure/block" target="blank">admin/structure/block</a>.  The "Google CSE" block provides a search box and also displays the search results.  After entering search terms, the user will be returned to the same page (via GET request) and the results will be displayed.  Do not allow this Google CSE block to appear on the search/google page, as the search results will fail to display.') . '</p>';
+      $output .= '<h3>' . t('SiteSearch') . '</h3>';
+      $output .= '<p>' . t('In addition to the CSE functionality, SiteSearch on one or more domains or URL paths can optionally be configured.  Radio buttons allow users to search on either the SiteSearch option(s) or the CSE, and searches can default to either option.') . '</p>';
+      $output .= '<h3>' . t('Advanced Settings') . '</h3>';
+      $output .= '<p>' . t("The collapsed advanced settings on the settings page provide various customizations such as country and language preferences.  For example, with the Locale module enabled, the Google CSE user interface language can be selected dynamically based on the current user's language.") . '</p>';
+      return $output;
+  }
+}
+
+/**
  * Implements hook_search_info().
  */
 function google_cse_search_info() {
