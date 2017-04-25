@@ -49,6 +49,9 @@ function google_cse_conditions_callback($keys) {
  * Implements hook_search_execute().
  */
 function google_cse_search_execute($keys = NULL, $conditions = NULL) {
+  // Pass search terms to JS so they can be sent in google_cse_results.js
+  drupal_add_js(array('googleCSE' => array('keys' => $keys)), 'setting');
+
   if (variable_get('google_cse_use_adv', 0)) {
     // Firstly, load the needed modules.
     module_load_include('inc', 'google_cse', 'google_cse_adv/google_cse_adv');
