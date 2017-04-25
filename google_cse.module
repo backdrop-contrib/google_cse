@@ -93,7 +93,6 @@ function google_cse_build_query($keys, $sitesearch = NULL, $here = TRUE) {
  * Implements hook_search_page().
  */
 function google_cse_search_page($results) {
-
   if (!variable_get('google_cse_use_adv', 0)) {
     $output['#theme'] = 'google_cse_results';
 
@@ -107,15 +106,17 @@ function google_cse_search_page($results) {
     return $output;
   }
 
+  $current_page = 0;
   if (!empty($_GET['page'])) {
     $current_page = $_GET['page'];
-    $number_results = t('Results @from to @to of @total matches.', array(
-      '@from' => $current_page * 10,
-      '@to' => $current_page * 10 + 10,
-      '@total' => $GLOBALS['pager_total_items'][0],
-    ));
-    $output['prefix']['#markup'] = $number_results . '<ol class="search-results">';
   }
+
+  $number_results = t('Results @from to @to of @total matches.', array(
+    '@from' => $current_page * 10 + 1,
+    '@to' => $current_page * 10 + 10,
+    '@total' => $GLOBALS['pager_total_items'][0],
+  ));
+  $output['prefix']['#markup'] = $number_results . '<ol class="search-results">';
 
   foreach ($results as $entry) {
     $output[] = array(
@@ -124,11 +125,9 @@ function google_cse_search_page($results) {
       '#module' => 'google_cse',
     );
   }
- 
-  if (!empty($_GET['page'])) {
-    // Important, add the pager.
-    $output['suffix']['#markup'] = '</ol>' . theme('pager');
-  }
+
+  // Important, add the pager.
+  $output['suffix']['#markup'] = '</ol>' . theme('pager');
 
   return $output;
 }
