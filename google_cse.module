@@ -148,44 +148,12 @@ function google_cse_permission() {
 }
 
 /**
- * Returns an array of any advanced settings which have been set.
- */
-function google_cse_advanced_settings() {
-  global $language;
-  $settings = array();
-  foreach (array('cr', 'gl', 'hl', 'ie', 'lr', 'oe', 'safe') as $parameter) {
-    if ($setting = variable_get("google_cse_$parameter", '')) {
-      $settings[$parameter] = $setting;
-    }
-  }
-  if (variable_get('google_cse_locale_hl', '')) {
-    $settings['hl'] = $language->language;
-  }
-  if (variable_get('google_cse_locale_lr', '')) {
-    $settings['lr'] = 'lang_' . $language->language;
-  }
-  return $settings;
-}
-
-/**
- * Get the relevant language to use for the search.
- *
- * @return string
- *   The language.
- */
-function google_cse_language() {
-  global $language;
-  return variable_get('google_cse_locale_hl', '') ? $language->language : variable_get('google_cse_hl', '');
-}
-
-/**
  * Implements hook_init().
  */
 function google_cse_init() {
   drupal_add_js(array(
     'googleCSE' => array(
       'cx' => variable_get('google_cse_cx', ''),
-      'language' => google_cse_language(),
       'resultsWidth' => intval(variable_get('google_cse_results_width', 600)),
       'domain' => variable_get('google_cse_domain', 'www.google.com'),
       'showWaterMark' => variable_get('google_cse_show_watermark', TRUE),
