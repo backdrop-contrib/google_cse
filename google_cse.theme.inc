@@ -101,6 +101,5 @@ function google_cse_results_searchbox_form($form, &$form_state) {
   $form['query']['#size'] = intval(variable_get('google_cse_results_searchbox_width', 40));
   $form['query']['#title'] = t('Enter your keywords');
 
-  google_cse_sitesearch_form($form);
   return $form;
 }

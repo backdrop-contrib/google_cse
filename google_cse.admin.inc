@@ -124,64 +124,6 @@ function google_cse_admin_settings() {
     '#default_value' => variable_get('google_cse_tag_attributes', 'gname="google_cse"'),
   );
 
-  $form['google_cse']['sitesearch'] = array(
-    '#title' => t('SiteSearch settings'),
-    '#type' => 'fieldset',
-    '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
-  );
-
-  $form['google_cse']['sitesearch']['google_cse_sitesearch'] = array(
-    '#title' => t('SiteSearch domain'),
-    '#type' => 'textarea',
-    '#cols' => 50,
-    '#rows' => 4,
-    '#description' => t('If set, users will be presented with the option of searching only on the domain(s) specified rather than using the CSE. Enter one domain or URL path followed by a description (e.g. <em>example.com/user Search users</em>) on each line.'),
-    '#default_value' => variable_get('google_cse_sitesearch', ''),
-  );
-
-  $form['google_cse']['sitesearch']['google_cse_sitesearch_form'] = array(
-    '#title' => t('SiteSearch form element'),
-    '#type' => 'radios',
-    '#options' => array(
-      'radios' => t('Radio buttons'),
-      'select' => t('Select'),
-    ),
-    '#description' => t('Select the type of form element used to present the SiteSearch option(s).'),
-    '#default_value' => variable_get('google_cse_sitesearch_form', 'radios'),
-  );
-
-  $form['google_cse']['sitesearch']['google_cse_sitesearch_option'] = array(
-    '#title' => t('CSE search option label'),
-    '#type' => 'textfield',
-    '#maxlength' => 50,
-    '#size' => 60,
-    '#description' => t('Customize the label for CSE search if SiteSearch is enabled (defaults to %search-web).', array('%search-web' => t('Search the web'))),
-    '#default_value' => variable_get('google_cse_sitesearch_option', ''),
-  );
-
-  $form['google_cse']['sitesearch']['google_cse_sitesearch_default'] = array(
-    '#title' => t('Default to using the SiteSearch domain'),
-    '#type' => 'checkbox',
-    '#description' => t('If set, searches will default to using the first listed SiteSearch domain rather than the CSE.'),
-    '#default_value' => variable_get('google_cse_sitesearch_default', 0),
-  );
-
-  $form['google_cse']['advanced'] = array(
-    '#title' => t('Advanced settings'),
-    '#type' => 'fieldset',
-    '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
-  );
-
-  $form['google_cse']['advanced']['google_cse_domain'] = array(
-    '#title' => t('Search domain'),
-    '#type' => 'textfield',
-    '#maxlength' => 64,
-    '#description' => t('Enter the Google domain to use for search results, e.g. <em>www.google.com</em>.'),
-    '#default_value' => variable_get('google_cse_domain', 'www.google.com'),
-  );
-
   $form['google_cse']['advanced']['google_cse_limit_domain'] = array(
     '#title' => t('Limit results to this domain'),
     '#type' => 'textfield',
@@ -283,20 +225,6 @@ function google_cse_admin_settings() {
     '#description' => t('Set the search engine layout, as found in the Layout tab of <a target="_blank" href="@url">Custom Search settings</a>.', array(
       '@url' => 'https://www.google.com/cse/lookandfeel/layout?cx=' . variable_get('google_cse_cx', ''),
     )),
-  );
-
-  $form['google_cse_adv'] = array(
-    '#title' => t('Google CSE Advanced'),
-    '#type' => 'fieldset',
-    '#collapsible' => TRUE,
-    '#collapsed' => FALSE,
-  );
-
-  $form['google_cse_adv']['google_cse_use_adv'] = array(
-    '#title' => t('Use advanced, ad-free version, search engine (You will need a paid account with Google)'),
-    '#type' => 'checkbox',
-    '#default_value' => variable_get('google_cse_use_adv', 0),
-    '#description' => t('If enabled, search results will be fetch using Adv engine.'),
   );
 
   return $form;
