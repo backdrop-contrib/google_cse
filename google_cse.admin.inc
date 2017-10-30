@@ -11,6 +11,13 @@
 function google_cse_admin_settings() {
   $form = array();
 
+  $form['google_cse_name'] = array(
+    '#title' => t('Google Custom Search Engine Name'),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('google_cse_name', ''),
+    '#description' => t('Enter your <a target="_blank" href="http://www.google.com/cse/manage/all">Google CSE Name</a> (click on control panel).'),
+  );
+
   $form['google_cse_cx'] = array(
     '#title' => t('Google Custom Search Engine ID'),
     '#type' => 'textfield',
@@ -107,7 +114,7 @@ function google_cse_admin_settings() {
   $form['google_cse_show_watermark'] = array(
     '#title' => t('Show watermark in search field'),
     '#type' => 'checkbox',
-    '#description' => t('If set, search result snippets will contain a thumbnail image'),
+    '#description' => t('If set, Google Custom Search watermark will be in search box'),
     '#default_value' => variable_get('google_cse_results_display_images', TRUE),
   );
 
