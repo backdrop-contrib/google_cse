@@ -12,6 +12,7 @@ function google_cse_admin_settings() {
   $config = config('google_cse.settings');
   $form = array();
 
+  $form['#config'] = 'google_cse.settings';
   $form['google_cse_name'] = array(
     '#title' => t('Google Custom Search Engine Name'),
     '#type' => 'textfield',
@@ -170,5 +171,6 @@ function google_cse_admin_settings() {
     }
 
     return $form_fieldset;
+    // return system_settings_form($form);
   }
 }
