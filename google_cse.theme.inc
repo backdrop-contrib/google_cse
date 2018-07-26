@@ -5,9 +5,14 @@
  * Themeable functions for Google Custom Search Engine.
  */
 
+/**
+ * @todo Please document this function.
+ * @see http://drupal.org/node/1354
+ */
 function google_cse_get_cse_tag() {
-  $display = variable_get('google_cse_custom_results_display', 'results-only');
-  $attributes = filter_xss(variable_get('google_cse_tag_attributes', 'gname="google_cse"'));
+  $config = config('google_cse.settings');
+  $display = $config->get('google_cse_custom_results_display');
+  $attributes = filter_xss($config->get('google_cse_tag_attributes'));
 
   switch ($display) {
     case 'overlay':
@@ -39,16 +44,17 @@ function google_cse_get_cse_tag() {
  * The search results page can be themed/customized.
  */
 function template_preprocess_google_cse_results(&$variables) {
-  $variables['results_searchbox_form'] = $variables['form'] ? drupal_get_form('google_cse_results_searchbox_form') : '';
+  $config = config('google_cse.settings');
+  $variables['results_searchbox_form'] = $variables['form'] ? backdrop_get_form('google_cse_results_searchbox_form') : '';
   $variables['cse_tag'] = google_cse_get_cse_tag();
   $variables['noscript'] = t('You must enable JavaScript to view the search results.');
-  $variables['prefix'] = filter_xss_admin(variable_get('google_cse_results_prefix', ''));
-  $variables['suffix'] = filter_xss_admin(variable_get('google_cse_results_suffix', ''));
+  $variables['prefix'] = filter_xss_admin($config->get('google_cse_results_prefix'));
+  $variables['suffix'] = filter_xss_admin($config->get('google_cse_results_suffix'));
 
   if (google_cse_validate_request()) {
-    drupal_add_js(drupal_get_path('module', 'google_cse') . '/google_cse_results.js',
+    backdrop_add_js(backdrop_get_path('module', 'google_cse') . '/google_cse_results.js',
                   array('scope' => 'footer'));
-    drupal_add_css('' . variable_get('google_cse_custom_css', '') . '', 'external');
+    backdrop_add_css('' . $config->get('google_cse_custom_css') . '', 'external');
   }
 }
 
@@ -56,25 +62,26 @@ function template_preprocess_google_cse_results(&$variables) {
  * Validate GET parameters to avoid displaying inappropriate search results.
  */
 function google_cse_validate_request() {
-  return (empty($_GET['cx']) || $_GET['cx'] == variable_get('google_cse_cx', ''));
+  return (empty($_GET['cx']) || $_GET['cx'] == config_get('google_cse.settings', 'google_cse_cx'));
 }
 
 /**
  * Form builder for the searchbox forms.
  */
 function google_cse_results_searchbox_form($form, &$form_state) {
+  $config = config('google_cse.settings');
   $form = array();
-  if (variable_get('google_cse_results_display', 'here') == 'here') {
-    $cof = variable_get('google_cse_cof_here', 'FORID:11');
+  if ($config->get('google_cse_results_display') == 'here') {
+    $cof = $config->get('google_cse_cof_here');
   }
   else {
-    $form['#action'] = '//' . variable_get('google_cse_domain', 'www.google.com') . '/cse';
-    $cof = variable_get('google_cse_cof_google', 'FORID:0');
+    $form['#action'] = '//' . $config->get('google_cse_domain') . '/cse';
+    $cof = $config->get('google_cse_cof_google');
   }
   $form['#method'] = 'get';
   $form['cx'] = array(
     '#type' => 'hidden',
-    '#value' => variable_get('google_cse_cx', ''),
+    '#value' => $config->get('google_cse_cx'),
   );
   $form['cof'] = array(
     '#type' => 'hidden',
@@ -88,7 +95,7 @@ function google_cse_results_searchbox_form($form, &$form_state) {
     '#type' => 'submit',
     '#value' => t('Search'),
   );
-  $form['query']['#size'] = intval(variable_get('google_cse_results_searchbox_width', 40));
+  $form['query']['#size'] = intval($config->get('google_cse_results_searchbox_width'));
   $form['query']['#title'] = t('Enter your keywords');
 
   return $form;

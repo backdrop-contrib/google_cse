@@ -9,19 +9,20 @@
  * Admin settings page for the CSE.
  */
 function google_cse_admin_settings() {
+  $config = config('google_cse.settings');
   $form = array();
 
   $form['google_cse_name'] = array(
     '#title' => t('Google Custom Search Engine Name'),
     '#type' => 'textfield',
-    '#default_value' => variable_get('google_cse_name', ''),
+    '#default_value' => $config->get('google_cse_name'),
     '#description' => t('Enter your <a target="_blank" href="http://www.google.com/cse/manage/all">Google CSE Name</a> (click on control panel).'),
   );
 
   $form['google_cse_cx'] = array(
     '#title' => t('Google Custom Search Engine ID'),
     '#type' => 'textfield',
-    '#default_value' => variable_get('google_cse_cx', ''),
+    '#default_value' => $config->get('google_cse_cx'),
     '#description' => t('Enter your <a target="_blank" href="http://www.google.com/cse/manage/all">Google CSE unique ID</a> (click on control panel).'),
   );
 
@@ -31,7 +32,7 @@ function google_cse_admin_settings() {
     '#maxlength' => 50,
     '#size' => 60,
     '#description' => t('Enter a custom name of the tab where search results are displayed (defaults to %google).', array('%google' => t('Google'))),
-    '#default_value' => variable_get('google_cse_results_tab', ''),
+    '#default_value' => $config->get('google_cse_results_tab'),
   );
 
   $form['google_cse_results_searchbox_width'] = array(
@@ -40,7 +41,7 @@ function google_cse_admin_settings() {
     '#maxlength' => 4,
     '#size' => 6,
     '#description' => t('Enter the desired width, in characters, of the searchbox on the Google CSE block.'),
-    '#default_value' => variable_get('google_cse_results_searchbox_width', 40),
+    '#default_value' => $config->get('google_cse_results_searchbox_width'),
   );
 
   $form['google_cse_results_width'] = array(
@@ -49,13 +50,13 @@ function google_cse_admin_settings() {
     '#maxlength' => 4,
     '#size' => 6,
     '#description' => t('Enter the desired width, in pixels, of the search frame.'),
-    '#default_value' => variable_get('google_cse_results_width', 600),
+    '#default_value' => $config->get('google_cse_results_width'),
   );
 
   $form['google_cse_cof_here'] = array(
     '#title' => t('Ad format on this site'),
     '#type' => 'radios',
-    '#default_value' => variable_get('google_cse_cof_here', 'FORID:11'),
+    '#default_value' => $config->get('google_cse_cof_here'),
     '#options' => array(
       'FORID:9' => t('Right'),
       'FORID:10' => t('Top and right'),
@@ -67,7 +68,7 @@ function google_cse_admin_settings() {
   $form['google_cse_cof_google'] = array(
     '#title' => t('Ad format on Google'),
     '#type' => 'radios',
-    '#default_value' => variable_get('google_cse_cof_google', 'FORID:0'),
+    '#default_value' => $config->get('google_cse_cof_google'),
     '#options' => array(
       'FORID:0' => t('Right'),
       'FORID:1' => t('Top and bottom'),
@@ -81,7 +82,7 @@ function google_cse_admin_settings() {
     '#cols' => 50,
     '#rows' => 4,
     '#description' => t('Enter text to appear on the search page before the search form.'),
-    '#default_value' => variable_get('google_cse_results_prefix', ''),
+    '#default_value' => $config->get('google_cse_results_prefix'),
   );
 
   $form['google_cse_results_suffix'] = array(
@@ -90,13 +91,13 @@ function google_cse_admin_settings() {
     '#cols' => 50,
     '#rows' => 4,
     '#description' => t('Enter text to appear on the search page after the search form and results.'),
-    '#default_value' => variable_get('google_cse_results_suffix', ''),
+    '#default_value' => $config->get('google_cse_results_suffix'),
   );
 
   $form['google_cse_results_display'] = array(
     '#title' => t('Display search results'),
     '#type' => 'radios',
-    '#default_value' => variable_get('google_cse_results_display', 'here'),
+    '#default_value' => $config->get('google_cse_results_display'),
     '#options' => array(
       'here' => t('On this site (requires JavaScript)'),
       'google' => t('On Google'),
@@ -108,34 +109,34 @@ function google_cse_admin_settings() {
     '#title' => t('Display thumbnail images in the search results'),
     '#type' => 'checkbox',
     '#description' => t('If set, search result snippets will contain a thumbnail image'),
-    '#default_value' => variable_get('google_cse_results_display_images', TRUE),
+    '#default_value' => $config->get('google_cse_results_display_images'),
   );
 
   $form['google_cse_show_watermark'] = array(
     '#title' => t('Show watermark in search field'),
     '#type' => 'checkbox',
     '#description' => t('If set, Google Custom Search watermark will be in search box'),
-    '#default_value' => variable_get('google_cse_results_display_images', TRUE),
+    '#default_value' => $config->get('google_cse_results_display_images'),
   );
 
   $form['google_cse_tag_attributes'] = array(
     '#title' => t('Google CSE Tag Attributes'),
     '#type' => 'textfield',
     '#description' => t('Enter any additional tag attributes you want in the GCSE tag. Defaults to gname="google_cse". A list of attributes can be found here: <a href="https://developers.google.com/custom-search/docs/element#supported_attributes">Google Custom Search supported attributes</a>'),
-    '#default_value' => variable_get('google_cse_tag_attributes', 'gname="google_cse"'),
+    '#default_value' => $config->get('google_cse_tag_attributes'),
   );
 
   $form['advanced']['google_cse_custom_css'] = array(
     '#title' => t('Stylesheet Override'),
     '#type' => 'textfield',
-    '#default_value' => variable_get('google_cse_custom_css', ''),
+    '#default_value' => $config->get('google_cse_custom_css'),
     '#description' => t('Set a custom stylesheet to override or add any styles not allowed in the CSE settings (such as "background-color: none;"). Include <span style="color:red; font-weight:bold;">!important</span> for overrides.<br/>Example: <em>//replacewithrealsite.com/sites/all/modules/google_cse/default.css</em>'),
   );
 
   $form['advanced']['google_cse_custom_results_display'] = array(
     '#title' => t('Layout of Search Engine'),
     '#type' => 'radios',
-    '#default_value' => variable_get('google_cse_custom_results_display', 'results-only'),
+    '#default_value' => $config->get('google_cse_custom_results_display'),
     '#options' => array(
       'overlay' => t('Overlay'),
       'two-page' => t('Two page'),
@@ -146,14 +147,15 @@ function google_cse_admin_settings() {
       'google-hosted' => t('Google hosted'),
     ),
     '#description' => t('Set the search engine layout, as found in the Layout tab of <a target="_blank" href="@url">Custom Search settings</a>.', array(
-      '@url' => 'https://www.google.com/cse/lookandfeel/layout?cx=' . variable_get('google_cse_cx', ''),
+      '@url' => 'https://www.google.com/cse/lookandfeel/layout?cx=' . $config->get('google_cse_cx'),
     )),
   );
 
   if (!module_exists('search')) {
     // If no search module enabled, then this form will load at a separate route under admin/config/search/cse-settings.
     return system_settings_form($form);
-  } else {
+  }
+  else {
     // If the search mdoule is enabled, then this form will load at admin/config/search/settings in a fieldset.
     $form_fieldset = array();
     $form_fieldset['google_cse'] = array(

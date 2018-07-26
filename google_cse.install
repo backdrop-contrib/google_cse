@@ -6,78 +6,126 @@
  */
 
 
-/**
-* Change search engine layout option from tags to fixed values.
-*/
-function google_cse_update_7200() {
+// TODO The old hook_update_N functions cannot be applied to Backdrop.
+function google_cse_update_7200() { }
 
-  switch (variable_get('google_cse_custom_results_display', '')) {
-    case '<gcse:search></gcse:search>':
-      $new_value = 'overlay';
-      break;
-
-    case '<gcse:searchbox-only></gcse:searchbox-only><gcse:searchresults-only></gcse:searchresults-only>':
-      $new_value = 'two-page';
-      break;
-
-    case '<gcse:search></gcse:search>&nbsp;':
-      $new_value = 'full-width';
-      break;
-
-    case '<gcse:searchbox></gcse:searchbox><gcse:searchresults></gcse:searchresults>':
-      $new_value = 'two-column';
-      break;
-
-    case '<gcse:search></gcse:search>&nbsp;&nbsp;':
-      $new_value = 'compact';
-      break;
-
-    case '<gcse:searchresults-only></gcse:searchresults-only>':
-      $new_value = 'results-only';
-      break;
-
-    case '<gcse:searchbox-only></gcse:searchbox-only>':
-      $new_value = 'google-hosted';
-      break;
-
-    default:
-      $new_value = 'results-only';
-  }
-
-  variable_set('google_cse_custom_results_display', $new_value);
-}
-
-/**
- * Delete irrelevant gadget variable.
- */
-function google_cse_update_7201() {
-  variable_del('google_cse_results_gadget');
-}
+// TODO The old hook_update_N functions cannot be applied to Backdrop.
+function google_cse_update_7201() { }
 
 /**
  * Implements hook_uninstall().
  */
 function google_cse_uninstall() {
+  $config = config('google_cse.settings');
   db_delete('variable')
     ->condition('name', db_like('google_cse_') . '%', 'LIKE')
     ->execute();
 
   // Delete Google CSE from active search modules, if it exists.
-  $active_search = variable_get('search_active_modules');
+  $active_search = config_get('search.settings', 'search_active_modules');
   if (array_key_exists('google_cse', $active_search)) {
     unset($active_search['google_cse']);
-    variable_set('search_active_modules', $active_search);
+    config_set('search.settings', 'search_active_modules', $active_search);
   }
 
   // Delete Google CSE from being default search module.
-  if (variable_get('search_default_module') == 'google_cse') {
-    variable_del('search_default_module');
+  if (config_get('search.settings', 'search_default_module') == 'google_cse') {
+    config_clear('search.settings', 'search_default_module');
   }
 }
 
+// TODO The old hook_update_N functions cannot be applied to Backdrop.
+function google_cse_update_7202() { }
+
 /**
- * Add path variable for cse form
+ * Implements hook_update_last_removed().
  */
-function google_cse_update_7202() {
-  variable_set('google_cse_name','');
+function google_cse_update_last_removed() {
+  return 7202;
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function google_cse_update_1000() {
+  $config = config('google_cse.settings');
+  $config->set('google_cse_name', update_variable_get('google_cse_name', 'novalue'));
+  $config->set('google_cse_cx', update_variable_get('google_cse_cx', ''));
+  $config->set('google_cse_results_tab', update_variable_get('google_cse_results_tab', ''));
+  $config->set('google_cse_results_searchbox_width', update_variable_get('google_cse_results_searchbox_width', '40'));
+  $config->set('google_cse_results_width', update_variable_get('google_cse_results_width', '600'));
+  $config->set('google_cse_cof_here', update_variable_get('google_cse_cof_here', 'FORID:11'));
+  $config->set('google_cse_cof_google', update_variable_get('google_cse_cof_google', 'FORID:0'));
+  $config->set('google_cse_results_prefix', update_variable_get('google_cse_results_prefix', ''));
+  $config->set('google_cse_results_suffix', update_variable_get('google_cse_results_suffix', ''));
+  $config->set('google_cse_results_display', update_variable_get('google_cse_results_display', 'here'));
+  $config->set('google_cse_results_display_images', update_variable_get('google_cse_results_display_images', 'TRUE'));
+  $config->set('google_cse_tag_attributes', update_variable_get('google_cse_tag_attributes', 'gname="google_cse"'));
+  $config->set('google_cse_custom_css', update_variable_get('google_cse_custom_css', ''));
+  $config->set('google_cse_custom_results_display', update_variable_get('google_cse_custom_results_display', 'results-only'));
+  $config->set('google_cse_sitesearch', update_variable_get('google_cse_sitesearch', ''));
+  $config->set('google_cse_sitesearch_form', update_variable_get('google_cse_sitesearch_form', 'radios'));
+  $config->set('google_cse_sitesearch_option', update_variable_get('google_cse_sitesearch_option', ''));
+  $config->set('google_cse_sitesearch_default', update_variable_get('google_cse_sitesearch_default', 'novalue'));
+  $config->set('google_cse_domain', update_variable_get('google_cse_domain', 'dynamic value in file /google_cse/google_cse.theme.inc line 71'));
+  $config->set('google_cse_limit_domain', update_variable_get('google_cse_limit_domain', ''));
+  $config->set('google_cse_cr', update_variable_get('google_cse_cr', ''));
+  $config->set('google_cse_gl', update_variable_get('google_cse_gl', ''));
+  $config->set('google_cse_hl', update_variable_get('google_cse_hl', ''));
+  $config->set('google_cse_locale_hl', update_variable_get('google_cse_locale_hl', ''));
+  $config->set('google_cse_ie', update_variable_get('google_cse_ie', 'utf-8'));
+  $config->set('google_cse_lr', update_variable_get('google_cse_lr', ''));
+  $config->set('google_cse_locale_lr', update_variable_get('google_cse_locale_lr', ''));
+  $config->set('google_cse_oe', update_variable_get('google_cse_oe', ''));
+  $config->set('google_cse_safe', update_variable_get('google_cse_safe', ''));
+  $config->set('google_cse_use_adv', update_variable_get('google_cse_use_adv', 'novalue'));
+  $config->set('google_cse_parameter', update_variable_get('google_cse_parameter', 'dynamic variable in file /google_cse/google_cse.module line 223'));
+  $config->set('google_cse_show_watermark', update_variable_get('google_cse_show_watermark', 'TRUE'));
+  $config->set('google_cse_adv_results_per_page', update_variable_get('google_cse_adv_results_per_page', '10'));
+  $config->set('google_cse_adv_language', update_variable_get('google_cse_adv_language', ''));
+  $config->set('google_cse_adv_maximum_results', update_variable_get('google_cse_adv_maximum_results', '1500'));
+  update_variable_del('google_cse_name');
+  update_variable_del('google_cse_cx');
+  update_variable_del('google_cse_results_tab');
+  update_variable_del('google_cse_results_searchbox_width');
+  update_variable_del('google_cse_results_width');
+  update_variable_del('google_cse_cof_here');
+  update_variable_del('google_cse_cof_google');
+  update_variable_del('google_cse_results_prefix');
+  update_variable_del('google_cse_results_suffix');
+  update_variable_del('google_cse_results_display');
+  update_variable_del('google_cse_results_display_images');
+  update_variable_del('google_cse_tag_attributes');
+  update_variable_del('google_cse_custom_css');
+  update_variable_del('google_cse_custom_results_display');
+  update_variable_del('google_cse_sitesearch');
+  update_variable_del('google_cse_sitesearch_form');
+  update_variable_del('google_cse_sitesearch_option');
+  update_variable_del('google_cse_sitesearch_default');
+  update_variable_del('google_cse_domain');
+  update_variable_del('google_cse_limit_domain');
+  update_variable_del('google_cse_cr');
+  update_variable_del('google_cse_gl');
+  update_variable_del('google_cse_hl');
+  update_variable_del('google_cse_locale_hl');
+  update_variable_del('google_cse_ie');
+  update_variable_del('google_cse_lr');
+  update_variable_del('google_cse_locale_lr');
+  update_variable_del('google_cse_oe');
+  update_variable_del('google_cse_safe');
+  update_variable_del('google_cse_use_adv');
+  update_variable_del('google_cse_parameter');
+  update_variable_del('google_cse_show_watermark');
+  update_variable_del('google_cse_adv_results_per_page');
+  update_variable_del('google_cse_adv_language');
+  update_variable_del('google_cse_adv_maximum_results');
+}
+
+/**
+ * Implements hook_install().
+ */
+function google_cse_install() {
+  // Dynamically generated variable data was detected.
+  // /google_cse/google_cse.theme.inc line 71
+  // /google_cse/google_cse.module line 223
 }
