@@ -5,13 +5,6 @@
  * Installation functions.
  */
 
-
-// TODO The old hook_update_N functions cannot be applied to Backdrop.
-function google_cse_update_7200() { }
-
-// TODO The old hook_update_N functions cannot be applied to Backdrop.
-function google_cse_update_7201() { }
-
 /**
  * Implements hook_uninstall().
  */
@@ -32,16 +25,6 @@ function google_cse_uninstall() {
   if (config_get('search.settings', 'search_default_module') == 'google_cse') {
     config_clear('search.settings', 'search_default_module');
   }
-}
-
-// TODO The old hook_update_N functions cannot be applied to Backdrop.
-function google_cse_update_7202() { }
-
-/**
- * Implements hook_update_last_removed().
- */
-function google_cse_update_last_removed() {
-  return 7202;
 }
 
 /**
