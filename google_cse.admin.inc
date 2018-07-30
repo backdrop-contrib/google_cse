@@ -151,25 +151,23 @@ function google_cse_admin_settings() {
       '@url' => 'https://www.google.com/cse/lookandfeel/layout?cx=' . $config->get('google_cse_cx'),
     )),
   );
-
   if (!module_exists('search')) {
     // If no search module enabled, then this form will load at a separate route under admin/config/search/cse-settings.
     return system_settings_form($form);
-  }
+  } 
   else {
     // If the search mdoule is enabled, then this form will load at admin/config/search/settings in a fieldset.
+    // @todo Make CSE settings form save when default search module is enabled
     $form_fieldset = array();
     $form_fieldset['google_cse'] = array(
       '#title' => t('Google CSE'),
       '#type' => 'fieldset',
-      '#collapsible' => TRUE,
-      '#collapsed' => FALSE,
+      '#collapsible' => true,
+      '#collapsed' => false,
     );
-
     foreach ($form as $key => $value) {
       $form_fieldset['google_cse'][$key] = $value;
     }
-
     return $form_fieldset;
     // return system_settings_form($form);
   }
