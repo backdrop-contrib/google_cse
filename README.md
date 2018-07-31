@@ -68,4 +68,4 @@ click the "Search engine ID" button to the right of "Details".
 
 ## License
 
-This project is GPL v3 software. See the LICENSE.txt file in this directory for complete text.
+This project is GPL v2 software. See the LICENSE.txt file in this directory for complete text.
