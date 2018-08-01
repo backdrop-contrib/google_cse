@@ -1,16 +1,14 @@
 # Google Custom Search Engine
 
-## Contents of this file
-
-* Overview
-* Quick setup
-* Requirements
-* Blocks
-* SiteSearch
-* Search module integration
-* Advanced settings
-* Installation
-* Maintainers
+- [Google Custom Search Engine](#google-custom-search-engine)
+    - [Overview](#overview)
+    - [Quick Setup](#quick-setup)
+    - [Blocks](#blocks)
+    - [SiteSearch](#sitesearch)
+    - [Advanced Settings](#advanced-settings)
+    - [Installation](#installation)
+    - [Credits](#credits)
+    - [License](#license)
 
 ## Overview
 

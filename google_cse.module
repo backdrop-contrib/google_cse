@@ -33,9 +33,6 @@ function google_cse_menu() {
 
   // If no Search module in core, then we need to make our own admin page.
   if (!module_exists('search')) {
-
-//    $items = array();
-
     $items['admin/config/search/cse-settings'] = array(
       'title' => 'Configure Google CSE',
       'description' => '',
@@ -57,17 +54,15 @@ function google_cse_menu() {
   return $items;
 }
 
-///**
-// * Returns xml with only the settings in google-cse-xml.tpl
-// */
 /**
  * Implements hook_config_info().
  */
 function google_cse_config_info() {
   $prefixes['google_cse.settings'] = array(
-    'label' => t('Module name settings'),
+    'label' => t('Google CSE settings'),
     'group' => t('Configuration'),
   );
+  return $prefixes;
 }
 
 /**
@@ -86,10 +81,6 @@ function google_cse_render_xml() {
   print theme('google_cse_xml', array('node' => $cse_variables));
 }
 
-//
-///**
-// * Checks content types that configured to allow the nodes be rendered as PBCore xml.
-// */
 /**
  * @todo Please document this function.
  * @see http://drupal.org/node/1354

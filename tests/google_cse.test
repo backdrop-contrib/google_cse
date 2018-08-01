@@ -6,22 +6,6 @@
  */
 
 class GoogleCSETestCase extends DrupalWebTestCase {
-  protected $privileged_user;
-
-  /**
-   * Tell Drupal about the module's tests.
-   *
-   * @return array
-   *   An array of information to display on Testing UI page.
-   */
-  public static function getInfo() {
-    // Note: getInfo() strings are not translated with t().
-    return array(
-      'name' => 'Google CSE Tests',
-      'description' => 'Ensure that the Google Custom Search Engine is integrated with Search API.',
-      'group' => 'Search',
-    );
-  }
 
   /**
    *  Perform steps to setup Drupal installation for test runs.

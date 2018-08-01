@@ -10,6 +10,7 @@
  */
 function google_cse_uninstall() {
   $config = config('google_cse.settings');
+  // config_uninstall_config('google_cse');
   db_delete('variable')
     ->condition('name', db_like('google_cse_') . '%', 'LIKE')
     ->execute();
