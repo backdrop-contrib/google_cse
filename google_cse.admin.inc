@@ -157,18 +157,18 @@ function google_cse_admin_settings() {
   } 
   else {
     // If the search mdoule is enabled, then this form will load at admin/config/search/settings in a fieldset.
-    // @todo Make CSE settings form save when default search module is enabled
-    $form_fieldset = array();
-    $form_fieldset['google_cse'] = array(
-      '#title' => t('Google CSE'),
-      '#type' => 'fieldset',
-      '#collapsible' => true,
-      '#collapsed' => false,
-    );
-    foreach ($form as $key => $value) {
-      $form_fieldset['google_cse'][$key] = $value;
-    }
-    return $form_fieldset;
-    // return system_settings_form($form);
+    // @todo Make CSE settings form save when default search module is enabled along with google cse
+    //   $form_fieldset = array();
+    //   $form_fieldset['google_cse'] = array(
+    //     '#title' => t('Google CSE'),
+    //     '#type' => 'fieldset',
+    //     '#collapsible' => true,
+    //     '#collapsed' => false,
+    //   );
+    //   foreach ($form as $key => $value) {
+    //     $form_fieldset['google_cse'][$key] = $value;
+    //   }
+    //   return $form_fieldset;
+    // 
   }
 }

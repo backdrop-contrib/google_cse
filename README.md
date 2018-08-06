@@ -19,7 +19,7 @@ required.  Read more at http://www.google.com/cse/.
 ## Quick Setup
 
 After installing this module, activate Google CSE at 
-admin/config/search/settings, optionally setting it as the default
+admin/config/search/settings, and set it as the default
 search module, and configure it by entering Google's unique ID for your
 CSE.  Once you have granted permission for one or more roles to search
 the Google CSE, the search page can be found at search/google, and a
