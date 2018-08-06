@@ -7,9 +7,9 @@
 window.__gcse = {
   callback: function () {
     var keys = [];
-    if (Drupal.settings.googleCSE.keys) {
+    if (Backdrop.settings.googleCSE.keys) {
       // Get search keys passed by settings.
-      keys[1] = Drupal.settings.googleCSE.keys;
+      keys[1] = Backdrop.settings.googleCSE.keys;
     } else {
       // Fallback to get keys from URL, if not set in settings.
       keys = /.*\/search\/google\/(.+)/.exec(document.location.pathname);
@@ -24,9 +24,9 @@ window.__gcse = {
 };
 
 // The Google CSE standard code, just changed to pick up the SE if
-// ("cx") from Drupal.settings.
+// ("cx") from Backdrop.settings.
 (function() {
-  var cx = Drupal.settings.googleCSE.cx;
+  var cx = Backdrop.settings.googleCSE.cx;
   var gcse = document.createElement('script');
   gcse.type = 'text/javascript';
   gcse.async = true;
@@ -40,7 +40,7 @@ window.__gcse = {
 // Added to send input from search block to Google endpoint.
 // The Form API AJAX framework should probably be used here.
 (function($) {
-  Drupal.behaviors.form_submit_processor = {
+  Backdrop.behaviors.form_submit_processor = {
     attach: function (context, settings) {
       $("form#google-cse-results-searchbox-form").submit(function (e) {
         e.preventDefault();

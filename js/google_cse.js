@@ -3,15 +3,15 @@
   /**
    * Google CSE utility functions.
    */
-  Drupal.googleCSE = Drupal.googleCSE || {};
+  Backdrop.googleCSE = Backdrop.googleCSE || {};
 
-  Drupal.behaviors.googleCSE = {
+  Backdrop.behaviors.googleCSE = {
     attach: function (context, settings) {
       // Show watermark, if not disabled in module settings.
-      if (Drupal.settings.googleCSE.showWaterMark) {
-        Drupal.googleCSE.googleCSEWatermark('#search-block-form.google-cse', context);
-        Drupal.googleCSE.googleCSEWatermark('#search-form.google-cse', context);
-        Drupal.googleCSE.googleCSEWatermark('#google-cse-results-searchbox-form', context);
+      if (Backdrop.settings.googleCSE.showWaterMark) {
+        Backdrop.googleCSE.googleCSEWatermark('#search-block-form.google-cse', context);
+        Backdrop.googleCSE.googleCSEWatermark('#search-form.google-cse', context);
+        Backdrop.googleCSE.googleCSEWatermark('#google-cse-results-searchbox-form', context);
       }
     }
   };
@@ -19,7 +19,7 @@
   /**
    * Show google CSE watermark.
    */
-  Drupal.googleCSE.googleCSEWatermark = function(id, context) {
+  Backdrop.googleCSE.googleCSEWatermark = function(id, context) {
     var f = $(id, context)[0];
     if (f && (f.query || f['edit-search-block-form--2'] || f['edit-keys'])) {
       var q = f.query ? f.query : (f['edit-search-block-form--2'] ? f['edit-search-block-form--2'] : f['edit-keys']);
@@ -30,7 +30,7 @@
       }
       var b = function () {
         if (q.value == '') {
-          q.style.background = '#FFFFFF url(https://www.google.com/cse/intl/' + Drupal.settings.googleCSE.language + '/images/google_custom_search_watermark.gif) left no-repeat';
+          q.style.background = '#FFFFFF url(https://www.google.com/cse/intl/' + Backdrop.settings.googleCSE.language + '/images/google_custom_search_watermark.gif) left no-repeat';
         }
       };
       var f = function () {

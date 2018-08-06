@@ -52,7 +52,7 @@ function template_preprocess_google_cse_results(&$variables) {
   $variables['suffix'] = filter_xss_admin($config->get('google_cse_results_suffix'));
 
   if (google_cse_validate_request()) {
-    backdrop_add_js(backdrop_get_path('module', 'google_cse') . '/google_cse_results.js',
+    backdrop_add_js(backdrop_get_path('module', 'google_cse') . '/js/google_cse_results.js',
                   array('scope' => 'footer'));
     backdrop_add_css('' . $config->get('google_cse_custom_css') . '', 'external');
   }

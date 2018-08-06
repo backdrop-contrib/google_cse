@@ -7,7 +7,7 @@
 //to debug, comment out the text/xml header and enable the print_r.
 // dsm() does NOT work at this level
 header("Content-type: text/xml");
-drupal_add_http_header('Content-Disposition', 'attachment; filename =' . $node['title'] . '.xml');
+backdrop_add_http_header('Content-Disposition', 'attachment; filename =' . $node['title'] . '.xml');
 echo '<?xml version="1.0" encoding="UTF-8" ?>';
 ?>
 

@@ -3,6 +3,6 @@ description = "Use Google Custom Search to search your site and/or any other sit
 backdrop = 1.x
 type = module
 
-scripts[] = google_cse.js
-stylesheets[all][] = google_cse.css
+scripts[] = js/google_cse.js
+stylesheets[all][] = css/google_cse.css
 
