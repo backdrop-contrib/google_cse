@@ -2,7 +2,8 @@ name = "Google CSE"
 description = "Use Google Custom Search to search your site and/or any other sites."
 backdrop = 1.x
 type = module
-
+parity = 7.x-3.0-alpha1+4-dev
+maintainers[] = jeor0980
 scripts[] = js/google_cse.js
 stylesheets[all][] = css/google_cse.css
 
