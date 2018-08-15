@@ -5,7 +5,7 @@
     - [Quick Setup](#quick-setup)
     - [Blocks](#blocks)
     - [Installation](#installation)
-    - [Credits](#credits)
+    - [Credits (Seeking Additional Maintainers)](#credits-seeking-additional-maintainers)
     - [License](#license)
 
 ## Overview
@@ -43,7 +43,10 @@ To configure this module, you will need your CSE's unique ID.  Go to
 http://www.google.com/cse/manage/all, select your search engine then
 click the "Search engine ID" button to the right of "Details".
 
-## Credits (Seeking Additional Maintainers!)
+## Credits (Seeking Additional Maintainers)
+
+At it's current state the Google CSE module has very limited functionality and a number of missing features, 
+please check out the issue queue and help out if you can!
 
 * Ported to Backdrop CMS by [Jesus Ortiz Tovar](https://github.com/jeor0980)
 * Originally written for Drupal by [Mark Burdett (mfb)](https://www.drupal.org/u/mfb) and [others](https://www.drupal.org/node/131984/committers)
