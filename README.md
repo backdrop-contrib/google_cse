@@ -17,7 +17,7 @@ required.  Read more at http://www.google.com/cse/.
 ## Quick Setup
 
 Currently the default Search module must be disabled for Google CSE to be
-configured. After installing this module, go to admin/config/search/cse-settings
+configured. After installing this module, go to `admin/config/search/cse-settings`
 to configure it by entering Google's unique ID for your
 CSE.  Once you have granted permission for one or more roles to search
 the Google CSE, a separate self-contained search block needs to be enabled and placed
@@ -35,9 +35,9 @@ be displayed.
 ## Installation
 
 Place the google_cse directory in your backdrop modules directory.  
-Enable the Google CSE module at admin/modules, configure it at
-admin/config/search/settings, and assign permissions for "Google
-CSE" at admin/people/permissions.
+Enable the Google CSE module at `admin/modules`, configure it at
+`admin/config/search/settings`, and assign permissions for "Google
+CSE" at `admin/people/permissions`.
 
 To configure this module, you will need your CSE's unique ID.  Go to
 http://www.google.com/cse/manage/all, select your search engine then
