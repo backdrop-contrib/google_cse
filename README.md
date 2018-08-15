@@ -43,10 +43,9 @@ To configure this module, you will need your CSE's unique ID.  Go to
 http://www.google.com/cse/manage/all, select your search engine then
 click the "Search engine ID" button to the right of "Details".
 
-## Credits
+## Credits (Seeking Additional Maintainers!)
 
 * Ported to Backdrop CMS by [Jesus Ortiz Tovar](https://github.com/jeor0980)
-* Seeking Additional Maintainers!
 * Originally written for Drupal by [Mark Burdett (mfb)](https://www.drupal.org/u/mfb) and [others](https://www.drupal.org/node/131984/committers)
 
 ## License
