@@ -5,10 +5,10 @@
  * Google CSE module tests.
  */
 
-class GoogleCSETestCase extends DrupalWebTestCase {
+class GoogleCSETestCase extends BackdropWebTestCase {
 
   /**
-   *  Perform steps to setup Drupal installation for test runs.
+   *  Perform steps to setup Backdrop installation for test runs.
    */
   public function setUp() {
     // The only dependency for the Google CSE module is search.
@@ -101,7 +101,7 @@ class GoogleCSETestCase extends DrupalWebTestCase {
    * Setup search variables as most Google CSE users will.
    */
   private function setupGoogleCSEAsDefaultSearch() {
-    // Set variable for Drupal to use CSE as default search option.
+    // Set variable for Backdrop to use CSE as default search option.
     // We will explicitly define it with the other search module options.
     variable_set('search_active_modules', array(
       'google_cse' => 'google_cse',
