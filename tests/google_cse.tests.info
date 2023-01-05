@@ -2,5 +2,5 @@
 name = Google CSE Tests
 description = Ensure that the Google Custom Search Engine is integrated with Search API.
 group = Search
-file = tests/google_cse.test
+file = google_cse.test
 
